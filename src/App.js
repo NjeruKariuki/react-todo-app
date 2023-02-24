@@ -3,24 +3,36 @@ import { useState } from "react";
 
 function App() {
   //tasks array and is complete status states
-  const {tasks, setTasks} = useState([]);
-  const {isComplete, toggleComplete} = useState(false);
+  const [todolist, setToDoList] = useState([]);
+  const [newTask, setNewTask] = useState("");
+  const [isComplete, toggleComplete] = useState(false);
 
+
+
+  const addTask = (e) => {
+    e.preventDefault();
+    setToDoList([...todolist, newTask]);
+  }
+
+  const handleChange = (e) => {
+    setNewTask(e.target.value);
+  }
   return (
     <div className="container w-screen h-screen bg-white flex justify-center items-center">
-      <div className="header w-1/2 h-1/2 bg-slate-400 rounded-md">
-        <h1 className="text-2xl text-blue-700">To do list app</h1>
-        <div className="inputsForm">
-          <form>
-            <input type="text" name="" value=""/>
-            <button onClick={handleSubmit}>Submit</button>
+      <div className="header w-1/2 h-1/2 bg-slate-200 rounded-md p-8 flex flex-col">
+        <h1 className="text-2xl text-blue-700 flex justify-center items-center">To do list app</h1>
+        <div className="inputsForm flex justify-center items-center">
+          <form className="flex inline-block space-x-2 p-4 text-slate-500" onSubmit={addTask}>
+            <label className="text-xl">Add Task:</label>
+            <input className="bg-white w-64 text-sm border-2 border-black rounded-sm" type="text"  onChange={handleChange}/ >
+            <button className="w-auto h-auto bg-slate-500 text-white px-8 py-2  hover:bg-slate-800 rounded" >Submit</button>
           </form>
         </div>
 
         <div className="tasks">
-          <ul>
-              <Task completed={completed} />
-          </ul>
+          {todolist.map((task)=>{
+            return <Task task={task} />
+          })}
         </div>
       </div>
 
