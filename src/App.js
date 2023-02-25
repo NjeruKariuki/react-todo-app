@@ -15,6 +15,7 @@ function App() {
       taskName: newTask,
     };
     setToDoList([...todolist, task]);
+    setNewTask("")
   }
 
   const handleDelete = (id) => {
@@ -44,7 +45,7 @@ function App() {
         <div className="inputsForm flex justify-center items-center">
           <form className="flex inline-block space-x-2 p-4 text-slate-500" onSubmit={addTask}>
             <label className="text-xl font-mono">Add Task:</label>
-            <input className="bg-white w-64 text-sm border-2 border-black rounded-sm" type="text"  onChange={handleChange}/ >
+            <input className="bg-white w-64 text-sm border-2 border-black rounded-sm" type="text" value={newTask} onChange={handleChange}/ >
             <button className="w-auto h-auto bg-slate-500 text-white px-8 py-2  hover:bg-slate-800 rounded" >Submit</button>
           </form>
         </div>
