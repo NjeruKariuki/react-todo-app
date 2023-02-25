@@ -54,16 +54,6 @@ function App() {
             return <Task task={task} toggleComplete={toggleComplete} handleDelete = {handleDelete} />
           })}
         </div>
-        <div className="complete">
-          <h3>complete tasks</h3>
-        {todolist.map((task)=>{
-          if (task.complete === true){
-            return <Task task={task} toggleComplete={toggleComplete} handleDelete = {handleDelete} />
-          }else {
-            return null;
-          }
-          })}
-        </div>
       </div>
 
     </div>
