@@ -49,7 +49,7 @@ function App() {
           </form>
         </div>
 
-        <div className="tasks">
+        <div className="tasks flex flex-col block justify-center items-center py-6 ">
           {todolist.map((task)=>{
             return <Task task={task} toggleComplete={toggleComplete} handleDelete = {handleDelete} />
           })}
