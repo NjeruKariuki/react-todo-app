@@ -5,13 +5,33 @@ function App() {
   //tasks array and is complete status states
   const [todolist, setToDoList] = useState([]);
   const [newTask, setNewTask] = useState("");
-  const [isComplete, toggleComplete] = useState(false);
-
 
 
   const addTask = (e) => {
     e.preventDefault();
-    setToDoList([...todolist, newTask]);
+    const task = {
+      id: todolist.length === 0 ? 1 : todolist[todolist.length - 1].id + 1,
+      complete: false,
+      taskName: newTask,
+    };
+    setToDoList([...todolist, task]);
+  }
+
+  const handleDelete = (id) => {
+    setToDoList(todolist.filter((task)=>task.id!== id));
+  }
+  console.log(todolist)
+
+  const toggleComplete = (id) => {
+    setToDoList(
+      todolist.map((task) =>{
+        if(task.id === id){
+          return {...task, complete: true};
+        } else{
+          return task;
+        }
+      })
+    ) 
   }
 
   const handleChange = (e) => {
@@ -31,7 +51,17 @@ function App() {
 
         <div className="tasks">
           {todolist.map((task)=>{
-            return <Task task={task} />
+            return <Task task={task} toggleComplete={toggleComplete} handleDelete = {handleDelete} />
+          })}
+        </div>
+        <div className="complete">
+          <h3>complete tasks</h3>
+        {todolist.map((task)=>{
+          if (task.complete === true){
+            return <Task task={task} toggleComplete={toggleComplete} handleDelete = {handleDelete} />
+          }else {
+            return null;
+          }
           })}
         </div>
       </div>
