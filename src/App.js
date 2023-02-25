@@ -39,7 +39,7 @@ function App() {
   }
   return (
     <div className="container w-screen h-screen bg-white flex justify-center items-center font-mono">
-      <div className="header w-1/2 h-1/2 bg-slate-200 rounded-md p-8 flex flex-col">
+      <div className="header w-1/2 h-1/2 h-auto bg-slate-200 rounded-md p-8 flex flex-col">
         <h1 className="text-2xl text-blue-700 flex justify-center items-center font-mono">To do list app</h1>
         <div className="inputsForm flex justify-center items-center">
           <form className="flex inline-block space-x-2 p-4 text-slate-500" onSubmit={addTask}>
